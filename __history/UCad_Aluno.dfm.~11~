@@ -1,0 +1,204 @@
+object frm_CRUD: Tfrm_CRUD
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Alunos'
+  ClientHeight = 328
+  ClientWidth = 398
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 53
+    Top = 53
+    Width = 47
+    Height = 13
+    Caption = 'Matricula:'
+  end
+  object Label2: TLabel
+    Left = 69
+    Top = 80
+    Width = 31
+    Height = 13
+    Caption = 'Nome:'
+  end
+  object Label3: TLabel
+    Left = 68
+    Top = 107
+    Width = 32
+    Height = 13
+    Caption = 'Curso:'
+  end
+  object edt_matricula: TEdit
+    Left = 130
+    Top = 50
+    Width = 71
+    Height = 21
+    MaxLength = 10
+    TabOrder = 0
+  end
+  object edt_nome: TEdit
+    Left = 130
+    Top = 77
+    Width = 247
+    Height = 21
+    MaxLength = 50
+    TabOrder = 1
+  end
+  object edt_curso: TEdit
+    Left = 130
+    Top = 104
+    Width = 247
+    Height = 21
+    MaxLength = 30
+    TabOrder = 2
+  end
+  object btn_anterior: TButton
+    Left = 8
+    Top = 8
+    Width = 25
+    Height = 25
+    Caption = '<-'
+    TabOrder = 3
+  end
+  object btn_salvar: TButton
+    Left = 200
+    Top = 167
+    Width = 75
+    Height = 25
+    Caption = 'Salvar'
+    TabOrder = 4
+  end
+  object btn_proximo: TButton
+    Left = 39
+    Top = 8
+    Width = 25
+    Height = 25
+    Caption = '->'
+    TabOrder = 5
+  end
+  object btn_cancelar: TButton
+    Left = 302
+    Top = 167
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 6
+  end
+  object btn_adicionar: TButton
+    Left = 140
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Adicionar'
+    TabOrder = 7
+    OnClick = btn_adicionarClick
+  end
+  object btn_editar: TButton
+    Left = 221
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 8
+    OnClick = btn_editarClick
+  end
+  object btn_excluir: TButton
+    Left = 302
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Excluir'
+    TabOrder = 9
+    OnClick = btn_excluirClick
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 208
+    Width = 398
+    Height = 120
+    Align = alBottom
+    DataSource = ds_aluno
+    TabOrder = 10
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=crud_delphi'
+      'User_Name=sa'
+      'Password=123456'
+      'Server=PC-001\SQLEXPRESS'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 264
+  end
+  object qr_aluno: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from aluno')
+    Left = 96
+    Top = 264
+  end
+  object ds_aluno: TDataSource
+    DataSet = cds_aluno
+    Left = 152
+    Top = 264
+  end
+  object cds_aluno: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_aluno'
+    Left = 304
+    Top = 264
+    object cds_alunomatricula: TWideStringField
+      DisplayLabel = 'Matricula'
+      DisplayWidth = 12
+      FieldName = 'matricula'
+      Origin = 'matricula'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 10
+    end
+    object cds_alunonome: TWideStringField
+      DisplayLabel = 'Nome'
+      DisplayWidth = 30
+      FieldName = 'nome'
+      Origin = 'nome'
+      FixedChar = True
+      Size = 50
+    end
+    object cds_alunocurso: TWideStringField
+      DisplayLabel = 'Curso'
+      DisplayWidth = 23
+      FieldName = 'curso'
+      Origin = 'curso'
+      FixedChar = True
+      Size = 30
+    end
+  end
+  object dsp_aluno: TDataSetProvider
+    DataSet = qr_aluno
+    Left = 216
+    Top = 264
+  end
+  object qr_CRUD: TFDQuery
+    Connection = FDConnection1
+    Left = 304
+    Top = 208
+  end
+end
